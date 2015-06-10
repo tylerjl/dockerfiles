@@ -5,8 +5,10 @@ RUN gem install mail
 RUN gem install slack-notifier
 RUN gem install hipchat
 
-ENV CONFIG '{"verbose":true}'
+RUN mkdir -p /etc/systemd_mon
 
-ENTRYPOINT ["/bin/bash", "-c"]
+RUN echo "---\nverbose: true" > /etc/systemd_mon/config.yml
 
-CMD ["systemd_mon <(ruby -ryaml -rjson -e 'puts YAML.dump(JSON.parse(ENV[\"CONFIG\"]))')"]
+ENTRYPOINT ["/usr/local/bundle/bin/systemd_mon"]
+
+CMD ["/etc/systemd_mon/config.yml"]
