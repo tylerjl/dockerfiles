@@ -1,4 +1,6 @@
-FROM ruby:latest
+FROM ruby:2.0
+
+RUN echo gem: --no-document > /etc/gemrc
 
 RUN gem install systemd_mon
 RUN gem install mail
