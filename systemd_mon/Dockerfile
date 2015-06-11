@@ -1,4 +1,4 @@
-FROM ruby:2.0
+FROM ruby:slim
 
 RUN echo gem: --no-document > /etc/gemrc
 
@@ -11,6 +11,6 @@ RUN mkdir -p /etc/systemd_mon
 
 RUN echo "---\nverbose: true" > /etc/systemd_mon/config.yml
 
-ENTRYPOINT ["/usr/local/bundle/bin/systemd_mon"]
+ENTRYPOINT ["/usr/local/bin/systemd_mon"]
 
 CMD ["/etc/systemd_mon/config.yml"]
